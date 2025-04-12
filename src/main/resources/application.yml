@@ -1,0 +1,31 @@
+server:
+    port: 8100
+spring:
+    application:
+        name: desafio-votacao
+    data:
+        web:
+            pageable:
+                default-page-size: 20
+                max-page-size: 50
+                one-indexed-parameters: false
+                page-parameter: page
+                size-parameter: size
+            sort:
+                sort-parameter: sort
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ${SPRING_DATASOURCE_PASSWORD}
+        url: jdbc:mysql://localhost:3306/voting-challenge?createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC
+        username: ${SPRING_DATASOURCE_USERNAME}
+    flyway:
+        password: ${SPRING_DATASOURCE_PASSWORD}
+        url: jdbc:mysql://localhost:3306/voting-challenge?createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC
+        user: ${SPRING_DATASOURCE_USERNAME}
+    jackson:
+        default-property-inclusion: non_null
+        serialization:
+            fail_on_empty_beans: false
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+        show-sql: ${SHOW_SQL:false}
