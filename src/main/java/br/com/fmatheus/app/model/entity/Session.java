@@ -35,4 +35,5 @@ public class Session implements Serializable {
     @OneToOne
     @JoinColumn(name = "id_topic", referencedColumnName = "id", nullable = false)
     private Topic topic;
+
 }

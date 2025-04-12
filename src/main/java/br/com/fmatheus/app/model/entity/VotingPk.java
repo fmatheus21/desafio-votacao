@@ -18,6 +18,6 @@ public class VotingPk implements Serializable {
     @Column(name = "id_associeted", nullable = false)
     private UUID idAssocieted;
 
-    @Column(name = "id_topic", nullable = false)
-    private UUID idTopic;
+    @Column(name = "id_session", nullable = false)
+    private UUID idSession;
 }

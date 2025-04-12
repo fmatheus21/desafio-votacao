@@ -30,4 +30,5 @@ public class Voting implements Serializable {
     @NotNull
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
 }
