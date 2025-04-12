@@ -1,6 +1,6 @@
 CREATE TABLE voting (
-  id_associeted binary(16) NOT NULL,
-  id_session binary(16) NOT NULL,
+  id_associeted CHAR(36) NOT NULL,
+  id_session CHAR(36) NOT NULL,
   vote varchar(3) NOT NULL,
   created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id_associeted, id_session),

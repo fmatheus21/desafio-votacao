@@ -15,9 +15,9 @@ import java.util.UUID;
 @Embeddable
 public class VotingPk implements Serializable {
 
-    @Column(name = "id_associeted", nullable = false)
+    @Column(name = "id_associeted", nullable = false, length = 36, columnDefinition = "CHAR(36)")
     private UUID idAssocieted;
 
-    @Column(name = "id_session", nullable = false)
+    @Column(name = "id_session", nullable = false, length = 36, columnDefinition = "CHAR(36)")
     private UUID idSession;
 }
