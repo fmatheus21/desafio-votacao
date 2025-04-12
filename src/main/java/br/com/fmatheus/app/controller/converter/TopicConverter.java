@@ -15,7 +15,6 @@ public class TopicConverter {
                 .title(request.title())
                 .description(request.description())
                 .createdAt(LocalDateTime.now())
-                .open(false)
                 .build();
     }
 
@@ -24,8 +23,7 @@ public class TopicConverter {
                 topic.getId(),
                 topic.getTitle(),
                 topic.getDescription(),
-                topic.getCreatedAt(),
-                topic.isOpen());
+                topic.getCreatedAt());
     }
 
 }

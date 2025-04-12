@@ -8,6 +8,5 @@ import java.util.UUID;
 public record TopicResponse(UUID id,
                             String title,
                             String description,
-                            @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime createdAt,
-                            boolean open) {
+                            @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime createdAt) {
 }

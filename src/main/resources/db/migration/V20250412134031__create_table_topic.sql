@@ -1,6 +1,6 @@
 CREATE TABLE topic (
   id binary(16) NOT NULL,
-  title varchar(30) NOT NULL,
+  title varchar(100) NOT NULL,
   description longtext NOT NULL,
   created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
