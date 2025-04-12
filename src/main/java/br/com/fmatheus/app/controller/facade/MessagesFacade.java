@@ -12,6 +12,7 @@ public class MessagesFacade {
     private static final String NOT_FOUND = "message.error.not-found";
     private static final String TOPIC_NOT_FOUND = "message.error.topic-not-found";
     private static final String TOPIC_EXIST_SESSION = "message.error.topic-exist-session";
+    private static final String SESSION_CLOSE = "message.error.session-closed";
 
 
     public BadRequestException errorDocumentAlready() {
@@ -28,6 +29,10 @@ public class MessagesFacade {
 
     public void errorTopicAlreadySession() {
         throw new BadRequestException(TOPIC_EXIST_SESSION);
+    }
+
+    public void errorSessionIsClosed() {
+        throw new BadRequestException(SESSION_CLOSE);
     }
 
 

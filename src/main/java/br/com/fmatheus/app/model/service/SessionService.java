@@ -9,4 +9,6 @@ import java.util.UUID;
 public interface SessionService extends GenericService<Session, UUID> {
 
     Optional<Session> findByTopic(Topic topic);
+
+    boolean isCurrentTimeWithinSession(UUID id);
 }

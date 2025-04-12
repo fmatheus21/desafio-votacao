@@ -41,4 +41,10 @@ public class SessionServiceImpl implements SessionService {
     public Optional<Session> findByTopic(Topic topic) {
         return this.repository.findByTopic(topic);
     }
+
+    @Override
+    public boolean isCurrentTimeWithinSession(UUID id) {
+        return this.repository.isCurrentTimeWithinSession(id);
+    }
+
 }
