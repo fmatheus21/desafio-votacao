@@ -1,4 +1,4 @@
-CREATE TABLE session_voting (
+CREATE TABLE session (
   id binary(16) NOT NULL,
   id_topic binary(16) NOT NULL,
   start datetime NOT NULL,

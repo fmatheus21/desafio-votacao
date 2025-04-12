@@ -1,4 +1,4 @@
-CREATE TABLE vote (
+CREATE TABLE voting (
   id_associeted binary(16) NOT NULL,
   id_topic binary(16) NOT NULL,
   vote varchar(3) NOT NULL,
