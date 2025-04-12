@@ -1,6 +1,7 @@
 package br.com.fmatheus.app.model.service.impl;
 
 import br.com.fmatheus.app.model.entity.Session;
+import br.com.fmatheus.app.model.entity.Topic;
 import br.com.fmatheus.app.model.repository.SessionRepository;
 import br.com.fmatheus.app.model.service.SessionService;
 import lombok.RequiredArgsConstructor;
@@ -36,4 +37,8 @@ public class SessionServiceImpl implements SessionService {
         this.repository.deleteById(uuid);
     }
 
+    @Override
+    public Optional<Session> findByTopic(Topic topic) {
+        return this.repository.findByTopic(topic);
+    }
 }

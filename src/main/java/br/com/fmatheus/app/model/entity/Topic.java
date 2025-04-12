@@ -5,7 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.type.SqlTypes;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -23,7 +25,8 @@ public class Topic implements Serializable {
     @Id
     @GeneratedValue
     @UuidGenerator
-    @Column(name = "id", nullable = false)
+    @JdbcTypeCode(SqlTypes.CHAR)
+    @Column(name = "id", nullable = false, length = 36, columnDefinition = "CHAR(36)")
     private UUID id;
 
     @NotBlank
@@ -39,8 +42,5 @@ public class Topic implements Serializable {
     @NotNull
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
-
-    @OneToOne(mappedBy = "topic", cascade = CascadeType.ALL, optional = false)
-    private Session session;
 
 }

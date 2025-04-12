@@ -3,7 +3,9 @@ package br.com.fmatheus.app.model.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.type.SqlTypes;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -21,7 +23,8 @@ public class Session implements Serializable {
     @Id
     @GeneratedValue
     @UuidGenerator
-    @Column(name = "id", nullable = false)
+    @JdbcTypeCode(SqlTypes.CHAR)
+    @Column(name = "id", nullable = false, length = 36, columnDefinition = "CHAR(36)")
     private UUID id;
 
     @NotNull
@@ -31,6 +34,10 @@ public class Session implements Serializable {
     @NotNull
     @Column(name = "end", nullable = false)
     private LocalDateTime end;
+
+    @NotNull
+    @Column(name = "open", nullable = false)
+    private boolean open;
 
     @OneToOne
     @JoinColumn(name = "id_topic", referencedColumnName = "id", nullable = false)
