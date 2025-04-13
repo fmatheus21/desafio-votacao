@@ -15,3 +15,5 @@ message:
     data-integrity-violation: O regitro não pôde ser excluído devido a uma Violação de Integridade. Este registro está protegido pelo sistema.
     unknown: Erro desconhecido
     session-closed: A sessão está fechada para votação.
+    associeted-not-found: O associado não foi encontrado.
+    session-not-found: A sessão não foi encontrada.

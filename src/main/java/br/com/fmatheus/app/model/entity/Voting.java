@@ -1,8 +1,8 @@
 package br.com.fmatheus.app.model.entity;
 
+import br.com.fmatheus.app.controller.converter.VoteEnumConverter;
 import br.com.fmatheus.app.controller.enums.VoteEnum;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -21,8 +21,8 @@ public class Voting implements Serializable {
     @EmbeddedId
     protected VotingPk pk;
 
-    @Enumerated(EnumType.STRING)
-    @NotBlank
+    @Convert(converter = VoteEnumConverter.class)
+    @NotNull
     @Column(name = "vote", nullable = false)
     private VoteEnum vote;
 

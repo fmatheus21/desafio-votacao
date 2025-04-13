@@ -24,17 +24,17 @@ public class SessionFacade {
 
     public SessionResponse create(SessionRequest request) {
 
-        this.validateTopic(request.idTopic());
+        var topic = this.checksIfTopicExists(request.idTopic());
         this.validateSession(request.idTopic());
 
-        var entity = this.sessionConverter.converterToEntity(request);
+        var entity = this.sessionConverter.converterToEntity(request, topic);
         var commit = this.sessionService.save(entity);
         return this.sessionConverter.converterToResponse(commit);
     }
 
-    private void validateTopic(UUID id) {
+    private Topic checksIfTopicExists(UUID id) {
         log.info("Buscando pela Pauta com ID {}", id);
-        this.topicService.findById(id).orElseThrow(this.messagesFacade::errorTopicNotFoundException);
+        return this.topicService.findById(id).orElseThrow(this.messagesFacade::errorTopicNotFoundException);
     }
 
     private void validateSession(UUID idTopic) {

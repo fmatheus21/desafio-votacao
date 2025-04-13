@@ -15,12 +15,6 @@ import java.io.Serializable;
 @Embeddable
 public class VotingPk implements Serializable {
 
-    /*@Column(name = "id_associeted", nullable = false, length = 36, columnDefinition = "CHAR(36)")
-    private UUID idAssocieted;
-
-    @Column(name = "id_session", nullable = false, length = 36, columnDefinition = "CHAR(36)")
-    private UUID idSession;*/
-
     @ManyToOne
     @JoinColumn(name = "id_associeted", referencedColumnName = "id", insertable = false, updatable = false)
     private Associeted associeted;

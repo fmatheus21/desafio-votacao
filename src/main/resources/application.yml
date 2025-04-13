@@ -16,11 +16,11 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: ${SPRING_DATASOURCE_PASSWORD}
-    url: jdbc:mysql://localhost:3306/voting-challenge?createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/voting-challenge?createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=America/Sao_Paulo
     username: ${SPRING_DATASOURCE_USERNAME}
   flyway:
     password: ${SPRING_DATASOURCE_PASSWORD}
-    url: jdbc:mysql://localhost:3306/voting-challenge?createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/voting-challenge?createDatabaseIfNotExist=true&useTimezone=true&serverTimezone=America/Sao_Paulo
     user: ${SPRING_DATASOURCE_USERNAME}
   jackson:
     default-property-inclusion: non_null
@@ -29,14 +29,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: ${SHOW_SQL:false}
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-        type:
-          descriptor:
-            sql: TRACE
+
 voting:
   session:
-    expiration-time: 2 #Minutos
+    expiration-time: 20 #Minutos
