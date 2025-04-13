@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
-public class PersonServiceImpl implements PersonService {
+public non-sealed class PersonServiceImpl extends PersonHelper implements PersonService {
 
     private final PersonRepository repository;
 
@@ -23,12 +23,14 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Optional<Person> findById(Integer id) {
-        return this.repository.findById(id);
+        var result = this.repository.findById(id);
+        return result.map(this::output);
     }
 
     @Override
     public Person save(Person person) {
-        return this.repository.save(person);
+        var input = input(person);
+        return output(this.repository.save(input));
     }
 
     @Override
@@ -38,6 +40,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Optional<Person> findByDocument(String document) {
-        return this.repository.findByDocument(CharacterUtil.removeSpecialCharacters(document));
+        var result = this.repository.findByDocument(CharacterUtil.removeSpecialCharacters(document));
+        return result.map(this::output);
     }
 }
