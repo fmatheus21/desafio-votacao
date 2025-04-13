@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
 
-public record VotingRequest(@NotNull UUID idAssocieted,
+public record VotingRequest(@NotNull UUID idAssociated,
                             @NotNull UUID idSession,
                             @NotNull VoteEnum vote) {
 }

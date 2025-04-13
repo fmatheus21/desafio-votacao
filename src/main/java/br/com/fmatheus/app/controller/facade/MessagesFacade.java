@@ -13,11 +13,12 @@ public class MessagesFacade {
     private static final String TOPIC_NOT_FOUND = "message.error.topic-not-found";
     private static final String TOPIC_EXIST_SESSION = "message.error.topic-exist-session";
     private static final String SESSION_CLOSE = "message.error.session-closed";
-    private static final String ASSOCIETED_NOT_FOUND = "message.error.associeted-not-found";
+    private static final String ASSOCIATED_NOT_FOUND = "message.error.associated-not-found";
     private static final String SESSION_NOT_FOUND = "message.error.session-not-found";
+    private static final String ASSOCIATED_ALREADY_VOTED = "message.error.associated-already-voted";
 
 
-    public BadRequestException errorDocumentAlready() {
+    public void errorDocumentAlready() {
         throw new BadRequestException(EXIST_DOCUMENT);
     }
 
@@ -30,7 +31,7 @@ public class MessagesFacade {
     }
 
     public NotFoundException errorAsssocietedNotFoundException() {
-        throw new NotFoundException(ASSOCIETED_NOT_FOUND);
+        throw new NotFoundException(ASSOCIATED_NOT_FOUND);
     }
 
     public NotFoundException errorSessionNotFoundException() {
@@ -43,6 +44,10 @@ public class MessagesFacade {
 
     public void errorSessionIsClosed() {
         throw new BadRequestException(SESSION_CLOSE);
+    }
+
+    public void errorAssociatedAlreadyVoted() {
+        throw new BadRequestException(ASSOCIATED_ALREADY_VOTED);
     }
 
 

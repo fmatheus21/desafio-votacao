@@ -2,7 +2,7 @@ package br.com.fmatheus.app.controller.converter;
 
 import br.com.fmatheus.app.controller.dto.request.VotingRequest;
 import br.com.fmatheus.app.controller.dto.response.VotingResponse;
-import br.com.fmatheus.app.model.entity.Associeted;
+import br.com.fmatheus.app.model.entity.Associated;
 import br.com.fmatheus.app.model.entity.Session;
 import br.com.fmatheus.app.model.entity.Voting;
 import br.com.fmatheus.app.model.entity.VotingPk;
@@ -13,10 +13,10 @@ import java.time.LocalDateTime;
 @Component
 public class VotingConverter {
 
-    public Voting converterToEntity(VotingRequest request, Associeted associeted, Session session) {
+    public Voting converterToEntity(VotingRequest request, Associated associated, Session session) {
         return Voting.builder()
                 .pk(VotingPk.builder()
-                        .associeted(associeted)
+                        .associated(associated)
                         .session(session)
                         .build())
                 .vote(request.vote())
@@ -25,9 +25,9 @@ public class VotingConverter {
     }
 
     public VotingResponse converterToResponse(Voting voting) {
-        var associeted = new VotingResponse.AssocietedDto(
-                voting.getPk().getAssocieted().getId(),
-                voting.getPk().getAssocieted().getPerson().getName()
+        var associated = new VotingResponse.AssociatedDto(
+                voting.getPk().getAssociated().getId(),
+                voting.getPk().getAssociated().getPerson().getName()
         );
 
         var topic = new VotingResponse.TopicDto(
@@ -44,7 +44,7 @@ public class VotingConverter {
                 voting.getPk().getSession().isOpen()
         );
 
-        return new VotingResponse(associeted, session, topic);
+        return new VotingResponse(associated, session, topic);
 
     }
 }

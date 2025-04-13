@@ -1,8 +1,8 @@
 package br.com.fmatheus.app.model.service.impl;
 
-import br.com.fmatheus.app.model.entity.Associeted;
-import br.com.fmatheus.app.model.repository.AssocietedRepository;
-import br.com.fmatheus.app.model.service.AssocietedService;
+import br.com.fmatheus.app.model.entity.Associated;
+import br.com.fmatheus.app.model.repository.AssociatedRepository;
+import br.com.fmatheus.app.model.service.AssociatedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,23 +12,23 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
-public class AssocietedServiceImpl implements AssocietedService {
+public class AssociatedServiceImpl implements AssociatedService {
 
-    private final AssocietedRepository repository;
+    private final AssociatedRepository repository;
 
     @Override
-    public Collection<Associeted> findAll() {
+    public Collection<Associated> findAll() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public Optional<Associeted> findById(UUID uuid) {
+    public Optional<Associated> findById(UUID uuid) {
         return this.repository.findById(uuid);
     }
 
     @Override
-    public Associeted save(Associeted associeted) {
-        return this.repository.save(associeted);
+    public Associated save(Associated associated) {
+        return this.repository.save(associated);
     }
 
     @Override

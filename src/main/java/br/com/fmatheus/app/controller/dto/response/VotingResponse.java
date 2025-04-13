@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public record VotingResponse(AssocietedDto associated,
+public record VotingResponse(AssociatedDto associated,
                              SessionDto session,
                              TopicDto topic) {
 
-    public record AssocietedDto(UUID id,
+    public record AssociatedDto(UUID id,
                                 String name) {
 
     }

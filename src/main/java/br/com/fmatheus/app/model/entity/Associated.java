@@ -18,7 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "associated", uniqueConstraints = {@UniqueConstraint(columnNames = {"id", "document", "id_person"})})
-public class Associeted implements Serializable {
+public class Associated implements Serializable {
 
     @Id
     @GeneratedValue

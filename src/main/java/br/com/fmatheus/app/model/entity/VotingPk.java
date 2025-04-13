@@ -16,8 +16,8 @@ import java.io.Serializable;
 public class VotingPk implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "id_associeted", referencedColumnName = "id", insertable = false, updatable = false)
-    private Associeted associeted;
+    @JoinColumn(name = "id_associated", referencedColumnName = "id", insertable = false, updatable = false)
+    private Associated associated;
 
     @ManyToOne
     @JoinColumn(name = "id_session", referencedColumnName = "id", insertable = false, updatable = false)

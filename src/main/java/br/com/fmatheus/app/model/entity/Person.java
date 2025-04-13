@@ -32,5 +32,5 @@ public class Person implements Serializable {
     private String document;
 
     @OneToOne(mappedBy = "person", cascade = CascadeType.ALL, optional = false)
-    private Associeted associeted;
+    private Associated associated;
 }
