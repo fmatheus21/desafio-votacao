@@ -1,0 +1,10 @@
+CREATE TABLE session (
+  id UUID NOT NULL,
+  id_topic UUID NOT NULL,
+  start TIMESTAMP NOT NULL,
+  "end" TIMESTAMP NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE (id),
+  UNIQUE (id_topic),
+  CONSTRAINT fk_topic FOREIGN KEY (id_topic) REFERENCES topic (id) ON DELETE CASCADE ON UPDATE RESTRICT
+);
