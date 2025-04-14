@@ -85,7 +85,7 @@ class AssociatedFacadeTest {
     }
 
 
-    private void loadPerson() {
+    void loadPerson() {
         this.person = Person.builder()
                 .name("Pedro Nunes")
                 .document("12345678900")
@@ -107,7 +107,7 @@ class AssociatedFacadeTest {
         );
     }
 
-    private void loadAssociatedRequest() {
+    void loadAssociatedRequest() {
         this.associatedRequest = new AssociatedRequest("Pedro Nunes", "12345678900");
     }
 
