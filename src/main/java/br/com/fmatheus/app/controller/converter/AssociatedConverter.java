@@ -30,6 +30,7 @@ public class AssociatedConverter {
 
     public AssociatedResponse converterToResponse(Person person) {
         return new AssociatedResponse(
+                person.getAssociated().getId(),
                 person.getName(),
                 person.getDocument(),
                 person.getAssociated().getCreatedAt()

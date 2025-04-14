@@ -32,4 +32,4 @@ spring:
 
 voting:
   session:
-    expiration-time: 60 #Minutos
+    expiration-time: ${EXPIRATION_TIME:5} #Minutos

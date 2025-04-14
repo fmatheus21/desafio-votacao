@@ -22,8 +22,7 @@ public record VotingResponse(AssociatedDto associated,
 
     public record SessionDto(UUID id,
                              @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime start,
-                             @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime end,
-                             boolean open) {
+                             @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime end) {
 
     }
 }

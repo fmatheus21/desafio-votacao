@@ -58,6 +58,7 @@ public class AssociatedFacade {
      * @author <a href="mailto:fernando.matheuss@hotmail.com">Fernando Matheus</a>
      */
     private void checksIfDocumentExists(String document) {
+        log.info("Verificando se o associado com documento {} está cadastrado.", document);
         var person = this.personService.findByDocument(document);
         if (person.isPresent()) {
             this.messagesFacade.errorDocumentAlready();

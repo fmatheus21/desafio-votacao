@@ -18,3 +18,4 @@ message:
     associated-not-found: O associado não foi encontrado.
     session-not-found: A sessão não foi encontrada.
     associated-already-voted: O associado já votou nesta sessão.
+    session-closed-vote-couting: A sessão ainda está aberta e a contagem dos votos não está disponível.

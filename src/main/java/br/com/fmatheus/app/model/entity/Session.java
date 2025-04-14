@@ -35,10 +35,6 @@ public class Session implements Serializable {
     @Column(name = "end", nullable = false)
     private LocalDateTime end;
 
-    @NotNull
-    @Column(name = "open", nullable = false)
-    private boolean open;
-
     @OneToOne
     @JoinColumn(name = "id_topic", referencedColumnName = "id", nullable = false)
     private Topic topic;

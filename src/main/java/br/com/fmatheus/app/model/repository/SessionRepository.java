@@ -20,7 +20,6 @@ public interface SessionRepository extends JpaRepository<Session, UUID> {
                 FROM Session s
                 WHERE s.id = :id
                 AND CURRENT_TIMESTAMP BETWEEN s.start AND s.end
-                AND s.open = true
             """)
     boolean isCurrentTimeWithinSession(@Param("id") UUID id);
 

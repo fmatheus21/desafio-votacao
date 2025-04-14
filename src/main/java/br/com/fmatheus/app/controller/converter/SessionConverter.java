@@ -24,7 +24,6 @@ public class SessionConverter {
                 .topic(topic)
                 .start(date)
                 .end(date.plusMinutes(votingProperties.getSession().getExpirationTime()))
-                .open(true)
                 .build();
     }
 
@@ -33,7 +32,6 @@ public class SessionConverter {
                 session.getId(),
                 session.getStart(),
                 session.getEnd(),
-                session.isOpen(),
                 new SessionResponse.TopicDto(
                         session.getTopic().getId(),
                         session.getTopic().getTitle(),

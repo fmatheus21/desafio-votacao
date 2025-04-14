@@ -40,8 +40,7 @@ public class VotingConverter {
         var session = new VotingResponse.SessionDto(
                 voting.getPk().getSession().getId(),
                 voting.getPk().getSession().getStart(),
-                voting.getPk().getSession().getEnd(),
-                voting.getPk().getSession().isOpen()
+                voting.getPk().getSession().getEnd()
         );
 
         return new VotingResponse(associated, session, topic);

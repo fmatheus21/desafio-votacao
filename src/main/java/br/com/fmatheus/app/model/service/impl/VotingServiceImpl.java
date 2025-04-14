@@ -1,5 +1,6 @@
 package br.com.fmatheus.app.model.service.impl;
 
+import br.com.fmatheus.app.controller.enums.VoteEnum;
 import br.com.fmatheus.app.model.entity.Voting;
 import br.com.fmatheus.app.model.entity.VotingPk;
 import br.com.fmatheus.app.model.repository.VotingRepository;
@@ -8,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -36,4 +39,8 @@ public class VotingServiceImpl implements VotingService {
         this.repository.deleteById(pk);
     }
 
+    @Override
+    public Map<VoteEnum, Long> countVotesBySessionId(UUID idSession) {
+        return this.repository.countVotesBySessionId(idSession);
+    }
 }
