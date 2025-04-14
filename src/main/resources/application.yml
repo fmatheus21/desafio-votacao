@@ -29,7 +29,15 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: ${SHOW_SQL:false}
-
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
 voting:
+  openapi:
+    description: Voting Challenge API
+    title: Voting Challenge
+    version: 0.0.1
   session:
-    expiration-time: ${EXPIRATION_TIME:5} #Minutos
+    expiration-time: ${EXPIRATION_TIME:5}
