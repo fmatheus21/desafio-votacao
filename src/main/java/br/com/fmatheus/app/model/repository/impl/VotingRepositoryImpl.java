@@ -22,6 +22,7 @@ public class VotingRepositoryImpl implements VotingRepositoryQuery {
      *
      * @param idSession ID da sessão.
      * @return Mapa contendo a contagem por tipo de voto.
+     * @author <a href="mailto:fernando.matheuss@hotmail.com">Fernando Matheus</a>
      */
     @Override
     public Map<VoteEnum, Long> countVotesBySessionId(UUID idSession) {
