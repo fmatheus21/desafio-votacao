@@ -79,7 +79,7 @@ public class SessionFacade {
         log.info("Verificando se a pauta com ID {} já existe na Sessão.", idTopic);
         var session = this.sessionService.findByTopic(Topic.builder().id(idTopic).build());
         if (session.isPresent()) {
-            this.messagesFacade.errorTopicAlreadySession();
+            throw this.messagesFacade.errorTopicAlreadySession();
         }
     }
 

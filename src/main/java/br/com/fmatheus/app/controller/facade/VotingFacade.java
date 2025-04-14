@@ -92,7 +92,7 @@ public class VotingFacade {
         log.info("Verificando se a sessão com ID {} está fechada para contabilizar os votos.", idSession);
         var isOpen = this.sessionService.isCurrentTimeWithinSession(idSession);
         if (isOpen) {
-            this.messagesFacade.errorSessionIsClosedForVoteCounting();
+            throw this.messagesFacade.errorSessionIsClosedForVoteCounting();
         }
     }
 
@@ -106,7 +106,7 @@ public class VotingFacade {
         log.info("Verificando se a sessão com ID {} está aberto para votação.", idSession);
         var isOpen = this.sessionService.isCurrentTimeWithinSession(idSession);
         if (!isOpen) {
-            this.messagesFacade.errorSessionIsClosed();
+            throw this.messagesFacade.errorSessionIsClosed();
         }
     }
 
@@ -150,7 +150,7 @@ public class VotingFacade {
         var result = this.votingService.findById(pk);
 
         if (result.isPresent()) {
-            this.messagesFacade.errorAssociatedAlreadyVoted();
+            throw this.messagesFacade.errorAssociatedAlreadyVoted();
         }
     }
 

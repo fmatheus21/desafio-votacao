@@ -47,13 +47,12 @@ class AssociatedFacadeTest {
 
     @BeforeEach
     void setUp() {
-        this.loadPerson();
-        this.loadAssociatedRequest();
+        this.loadObjects();
     }
 
     @Test
     @Order(1)
-    @DisplayName("Salva registro com sucesso.")
+    @DisplayName("Cadastra associado com sucesso.")
     void testCreateSuccess() {
         when(this.personService.findByDocument("12345678900")).thenReturn(Optional.empty());
         when(this.associatedConverter.converterToEntity(this.associatedRequest)).thenReturn(this.person);
@@ -71,21 +70,20 @@ class AssociatedFacadeTest {
 
     @Test
     @Order(2)
-    @DisplayName("Erro ao tentar salvar registro.")
+    @DisplayName("Exceção lançada. O Documento já está cadastrado.")
     void testCreateException() {
 
         when(this.personService.findByDocument("12345678900")).thenReturn(Optional.of(this.person));
-        doThrow(new BadRequestException("message.error.exist-document")).when(this.messagesFacade).errorDocumentAlready();
 
+        when(messagesFacade.errorDocumentAlready()).thenThrow(new BadRequestException("message.error.exist-document"));
         var exception = assertThrows(BadRequestException.class, () -> this.associatedFacade.create(this.associatedRequest));
-        assertEquals("message.error.exist-document", exception.getMessage());
 
-        verify(this.messagesFacade).errorDocumentAlready();
+        assertEquals("message.error.exist-document", exception.getMessage());
         verify(this.personService, never()).save(any());
     }
 
 
-    void loadPerson() {
+    void loadObjects() {
         this.person = Person.builder()
                 .name("Pedro Nunes")
                 .document("12345678900")
@@ -105,11 +103,10 @@ class AssociatedFacadeTest {
                 this.person.getDocument(),
                 associated.getCreatedAt()
         );
-    }
 
-    void loadAssociatedRequest() {
         this.associatedRequest = new AssociatedRequest("Pedro Nunes", "12345678900");
     }
+
 
 }
 

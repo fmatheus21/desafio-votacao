@@ -61,7 +61,7 @@ public class AssociatedFacade {
         log.info("Verificando se o associado com documento {} está cadastrado.", document);
         var person = this.personService.findByDocument(document);
         if (person.isPresent()) {
-            this.messagesFacade.errorDocumentAlready();
+            throw this.messagesFacade.errorDocumentAlready();
         }
     }
 

@@ -44,14 +44,7 @@ class TopicFacadeTest {
 
     @BeforeEach
     void setUp() {
-        this.loadTopicRequest();
-        this.loadTopic();
-        this.loadTopicResponse();
-    }
-
-
-    void loadTopicRequest() {
-        this.topicRequest = new TopicRequest("Título da pauta", "Descrição da pauta");
+        this.loadObjects();
     }
 
     @Test
@@ -76,7 +69,9 @@ class TopicFacadeTest {
         verify(this.topicConverter).converterToResponse(this.savedTopic);
     }
 
-    void loadTopic() {
+    void loadObjects() {
+        this.topicRequest = new TopicRequest("Título da pauta", "Descrição da pauta");
+
         var date = LocalDateTime.now();
         var title = "Título da pauta";
         var description = "Descrição da pauta";
@@ -92,9 +87,7 @@ class TopicFacadeTest {
                 .description(description)
                 .createdAt(date)
                 .build();
-    }
 
-    void loadTopicResponse() {
         this.topicResponse = new TopicResponse(
                 this.savedTopic.getId(),
                 this.savedTopic.getTitle(),
@@ -102,5 +95,6 @@ class TopicFacadeTest {
                 this.savedTopic.getCreatedAt()
         );
     }
+
 
 }

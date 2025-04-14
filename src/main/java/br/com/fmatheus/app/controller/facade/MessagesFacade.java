@@ -19,41 +19,40 @@ public class MessagesFacade {
     private static final String ASSOCIATED_ALREADY_VOTED = "message.error.associated-already-voted";
 
 
-    public void errorDocumentAlready() {
-        throw new BadRequestException(EXIST_DOCUMENT);
+    public BadRequestException errorDocumentAlready() {
+        return new BadRequestException(EXIST_DOCUMENT);
     }
 
     public NotFoundException errorNotFoundException() {
-        throw new NotFoundException(NOT_FOUND);
+        return new NotFoundException(NOT_FOUND);
     }
 
     public NotFoundException errorTopicNotFoundException() {
-        throw new NotFoundException(TOPIC_NOT_FOUND);
+        return new NotFoundException(TOPIC_NOT_FOUND);
     }
 
     public NotFoundException errorAsssocietedNotFoundException() {
-        throw new NotFoundException(ASSOCIATED_NOT_FOUND);
+        return new NotFoundException(ASSOCIATED_NOT_FOUND);
     }
 
     public NotFoundException errorSessionNotFoundException() {
-        throw new NotFoundException(SESSION_NOT_FOUND);
+        return new NotFoundException(SESSION_NOT_FOUND);
     }
 
-    public void errorTopicAlreadySession() {
-        throw new BadRequestException(TOPIC_EXIST_SESSION);
+    public BadRequestException errorTopicAlreadySession() {
+        return new BadRequestException(TOPIC_EXIST_SESSION);
     }
 
-    public void errorSessionIsClosed() {
-        throw new BadRequestException(SESSION_CLOSE);
+    public BadRequestException errorSessionIsClosed() {
+        return new BadRequestException(SESSION_CLOSE);
     }
 
-    public void errorSessionIsClosedForVoteCounting() {
-        throw new BadRequestException(SESSION_CLOSE_CLOSED_VOTE_COUTING);
+    public BadRequestException errorSessionIsClosedForVoteCounting() {
+        return new BadRequestException(SESSION_CLOSE_CLOSED_VOTE_COUTING);
     }
 
-
-    public void errorAssociatedAlreadyVoted() {
-        throw new BadRequestException(ASSOCIATED_ALREADY_VOTED);
+    public BadRequestException errorAssociatedAlreadyVoted() {
+        return new BadRequestException(ASSOCIATED_ALREADY_VOTED);
     }
 
 

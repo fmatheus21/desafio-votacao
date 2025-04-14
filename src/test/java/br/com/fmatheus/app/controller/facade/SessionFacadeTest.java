@@ -56,10 +56,7 @@ class SessionFacadeTest {
 
     @BeforeEach
     void setUp() {
-        this.loadTopic();
-        this.loadSession();
-        this.loadSessionResponse();
-        this.loadSessionRequest();
+        this.loadObjects();
     }
 
     @Test
@@ -86,7 +83,7 @@ class SessionFacadeTest {
 
     @Test
     @Order(2)
-    @DisplayName("Erro ao tentar salvar registro. A pauta já está vinculada a uma sessão.")
+    @DisplayName("Exceção lançada. A pauta já está vinculada a uma sessão.")
     void testCreateTopicAlreadySessionException() {
         UUID topicId = UUID.randomUUID();
         SessionRequest request = new SessionRequest(topicId);
@@ -97,46 +94,43 @@ class SessionFacadeTest {
         when(this.topicService.findById(topicId)).thenReturn(Optional.of(this.topic));
         when(this.sessionService.findByTopic(any(Topic.class))).thenReturn(Optional.of(existingSession));
 
-        doThrow(new BadRequestException("message.error.topic-exist-session")).when(this.messagesFacade).errorTopicAlreadySession();
-        assertThrows(BadRequestException.class, () -> this.sessionFacade.create(request));
+        when(messagesFacade.errorTopicAlreadySession()).thenThrow(new BadRequestException("message.error.topic-exist-session"));
+        var exception = assertThrows(BadRequestException.class, () -> sessionFacade.create(request));
 
-        verify(this.topicService).findById(topicId);
-        verify(this.sessionService).findByTopic(any(Topic.class));
-        verify(this.messagesFacade).errorTopicAlreadySession();
+        assertEquals("message.error.topic-exist-session", exception.getMessage());
+        verify(this.topicService, times(1)).findById(topicId);
+        verify(this.sessionService, times(1)).findByTopic(any(Topic.class));
         verify(this.sessionConverter, never()).converterToEntity(any(), any());
         verify(this.sessionService, never()).save(any());
     }
 
     @Test
     @Order(3)
-    @DisplayName("Erro ao tentar salvar registro. A pauta não foi encontrada.")
+    @DisplayName("Exceção lançada. A pauta não foi encontrada.")
     void testCreateTopicNotFoundException() {
 
         UUID idTopic = UUID.randomUUID();
         SessionRequest request = new SessionRequest(idTopic);
-        NotFoundException expectedException = new NotFoundException("message.error.topic-not-found");
 
         when(this.topicService.findById(idTopic)).thenReturn(Optional.empty());
-        when(this.messagesFacade.errorTopicNotFoundException()).thenReturn(expectedException);
 
-        NotFoundException exception = assertThrows(NotFoundException.class, () -> this.sessionFacade.create(request));
+        when(messagesFacade.errorTopicNotFoundException()).thenThrow(new NotFoundException("message.error.topic-not-found"));
+        var exception = assertThrows(NotFoundException.class, () -> sessionFacade.create(request));
 
         assertEquals("message.error.topic-not-found", exception.getMessage());
-
-        verify(this.topicService).findById(idTopic);
-        verify(this.messagesFacade).errorTopicNotFoundException();
-        verifyNoInteractions(this.sessionConverter, this.sessionService);
+        verify(this.topicService, times(1)).findById(idTopic);
+        verify(this.sessionConverter, never()).converterToEntity(any(SessionRequest.class), any(Topic.class));
+        verify(this.sessionConverter, never()).converterToResponse(any(Session.class));
+        verify(this.sessionService, never()).save(any(Session.class));
     }
 
-    void loadTopic() {
+    void loadObjects() {
         this.topic = Topic.builder()
                 .id(ID_TOPIC)
                 .title("Pauta Teste")
                 .description("Descrição Teste")
                 .build();
-    }
 
-    void loadSession() {
         var date = LocalDateTime.now();
         this.session = Session.builder()
                 .id(UUID.fromString("ace4e198-d14e-4e9d-b99f-29db243cae90"))
@@ -144,20 +138,17 @@ class SessionFacadeTest {
                 .end(date.plusMinutes(1))
                 .topic(this.topic)
                 .build();
-    }
 
-    void loadSessionResponse() {
         this.sessionResponse = new SessionResponse(
                 this.session.getId(),
                 this.session.getStart(),
                 this.session.getEnd(),
                 new SessionResponse.TopicDto(this.topic.getId(), this.topic.getTitle(), this.topic.getDescription())
         );
-    }
 
-    void loadSessionRequest() {
         this.sessionRequest = new SessionRequest(ID_TOPIC);
     }
+
 
 }
 
