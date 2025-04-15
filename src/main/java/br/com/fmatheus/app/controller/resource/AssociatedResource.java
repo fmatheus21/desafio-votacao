@@ -20,6 +20,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+
 @Tag(name = "Associated", description = "Operações relacionadas à associado")
 @RequiredArgsConstructor
 @RestController
@@ -54,6 +56,18 @@ public class AssociatedResource {
         return this.facade.create(request);
     }
 
+    @Operation(
+            summary = "Lista associados",
+            description = "Lista os associados, com paginação")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "OK",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = AssociatedResponse.class))),
+            @ApiResponse(
+                    responseCode = "204",
+                    description = "No Content",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Arrays.class)))})
     @Transactional(readOnly = true)
     @GetMapping
     public ResponseEntity<Page<AssociatedResponse>> findAllFilter(Pageable pageable, AssociatedFilter filter) {
