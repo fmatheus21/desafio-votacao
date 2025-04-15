@@ -16,6 +16,7 @@
 * [Como Executar o Projeto](#como-executar-o-projeto)
 * [Endpoints](#endpoints)
     * [Criar Associado](#criar-associado)
+    * [Listar Associados](#listar-associados)
     * [Criar Pauta](#criar-pauta)
     * [Criar Sessão](#criar-sessão)
     * [Registrar Voto](#registrar-voto)
@@ -195,6 +196,61 @@ Resposta:
   "name": "Augusto Renato Aparício",
   "document": "27806581774",
   "createdAt": "14/04/2025 23:35:24"
+}
+```
+
+<br/>
+
+### Listar Associados
+
+Requisição:
+
+```sh
+curl --location --request GET 'http://localhost:8100/associates?page=0&size=5&name=renato'
+```
+
+Resposta:
+
+```json
+{
+  "content": [
+    {
+      "id": "64cd0f27-17bb-11f0-9044-581122c7752d",
+      "name": "ANDRÉ PAULO OLIVEIRA",
+      "document": "01243876166",
+      "createdAt": "15/04/2025 19:11:15"
+    },
+    {
+      "id": "739ea638-17bb-11f0-9044-581122c7752d",
+      "name": "ANTHONY DAVI DIOGO BARBOSA",
+      "document": "25749083098",
+      "createdAt": "15/04/2025 19:11:15"
+    },
+    {
+      "id": "7f59f589-17bb-11f0-9044-581122c7752d",
+      "name": "AUGUSTO YURI SALES",
+      "document": "59787584337",
+      "createdAt": "15/04/2025 19:11:15"
+    },
+    {
+      "id": "76715a58-17bb-11f0-9044-581122c7752d",
+      "name": "AYLA TATIANE PATRÍCIA TEIXEIRA",
+      "document": "72335211153",
+      "createdAt": "15/04/2025 19:11:15"
+    },
+    {
+      "id": "6db1702a-17bb-11f0-9044-581122c7752d",
+      "name": "CAROLINA JENNIFER LUANA MOURA",
+      "document": "47327146091",
+      "createdAt": "15/04/2025 19:11:15"
+    }
+  ],
+  "page": {
+    "size": 5,
+    "number": 0,
+    "totalElements": 10,
+    "totalPages": 2
+  }
 }
 ```
 
