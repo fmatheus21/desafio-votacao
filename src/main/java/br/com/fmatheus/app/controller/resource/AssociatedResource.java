@@ -3,6 +3,7 @@ package br.com.fmatheus.app.controller.resource;
 import br.com.fmatheus.app.controller.dto.request.AssociatedRequest;
 import br.com.fmatheus.app.controller.dto.response.AssociatedResponse;
 import br.com.fmatheus.app.controller.facade.AssociatedFacade;
+import br.com.fmatheus.app.model.repository.filter.AssociatedFilter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -11,8 +12,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Associated", description = "Operações relacionadas à associado")
@@ -47,5 +52,12 @@ public class AssociatedResource {
     @PostMapping
     public AssociatedResponse create(@RequestBody @Valid AssociatedRequest request) {
         return this.facade.create(request);
+    }
+
+    @Transactional(readOnly = true)
+    @GetMapping
+    public ResponseEntity<Page<AssociatedResponse>> findAllFilter(Pageable pageable, AssociatedFilter filter) {
+        var response = this.facade.findAllFilter(pageable, filter);
+        return !response.isEmpty() ? ResponseEntity.ok(response) : ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

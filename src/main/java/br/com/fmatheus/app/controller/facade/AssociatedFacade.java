@@ -3,9 +3,14 @@ package br.com.fmatheus.app.controller.facade;
 import br.com.fmatheus.app.controller.converter.AssociatedConverter;
 import br.com.fmatheus.app.controller.dto.request.AssociatedRequest;
 import br.com.fmatheus.app.controller.dto.response.AssociatedResponse;
+import br.com.fmatheus.app.model.repository.filter.AssociatedFilter;
+import br.com.fmatheus.app.model.service.AssociatedService;
 import br.com.fmatheus.app.model.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 
@@ -24,6 +29,7 @@ import org.springframework.stereotype.Component;
 public class AssociatedFacade {
 
     private final PersonService personService;
+    private final AssociatedService associatedService;
     private final AssociatedConverter associatedConverter;
     private final MessagesFacade messagesFacade;
 
@@ -65,4 +71,9 @@ public class AssociatedFacade {
         }
     }
 
+    public Page<AssociatedResponse> findAllFilter(Pageable pageable, AssociatedFilter filter) {
+        var list = this.associatedService.findAllFilter(pageable, filter);
+        var listConverter = list.map(map -> this.associatedConverter.converterToResponse(map.getPerson()));
+        return new PageImpl<>(listConverter.stream().toList(), pageable, this.associatedService.total(filter));
+    }
 }

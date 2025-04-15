@@ -2,8 +2,11 @@ package br.com.fmatheus.app.model.service.impl;
 
 import br.com.fmatheus.app.model.entity.Associated;
 import br.com.fmatheus.app.model.repository.AssociatedRepository;
+import br.com.fmatheus.app.model.repository.filter.AssociatedFilter;
 import br.com.fmatheus.app.model.service.AssociatedService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -36,4 +39,13 @@ public class AssociatedServiceImpl implements AssociatedService {
         this.repository.deleteById(uuid);
     }
 
+    @Override
+    public Page<Associated> findAllFilter(Pageable pageable, AssociatedFilter filter) {
+        return this.repository.findAllFilter(pageable, filter);
+    }
+
+    @Override
+    public Long total(AssociatedFilter filter) {
+        return this.repository.total(filter);
+    }
 }
