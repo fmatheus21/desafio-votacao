@@ -1,0 +1,21 @@
+message:
+  error:
+    exist-record: O registro já existe.
+    unauthorized: Não autorizado.
+    not-readable: Existem campos não reconhecidos.
+    internal-server: Houve um erro inesperado. Tente novamente. Caso o problema persista, entre em contato com o administrador.
+    forbidden: Acesso negado!
+    bad-request: Requisição inválida.
+    not-permission: Você não tem permissão para realizar esta ação.
+    not-found: Registro não encontrado.
+    topic-not-found: A pauta não foi encontrada.
+    topic-exist-session: Esta pauta já está vinculada a uma sessão.
+    exist-document: O Documento já está cadastrado.
+    record-not-exist: O registro não foi encontrado.
+    data-integrity-violation: O regitro não pôde ser excluído devido a uma Violação de Integridade. Este registro está protegido pelo sistema.
+    unknown: Erro desconhecido
+    session-closed: A sessão está fechada para votação.
+    associated-not-found: O associado não foi encontrado.
+    session-not-found: A sessão não foi encontrada.
+    associated-already-voted: O associado já votou nesta sessão.
+    session-closed-vote-couting: A sessão ainda está aberta e a contagem dos votos não está disponível.

@@ -1,0 +1,21 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none  # Hibernate não tentará alterar o banco de dados
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  flyway:
+    clean-disabled: false
+    enabled: true
+    baseline-on-migrate: true
+    url: jdbc:h2:mem:testdb
+    user: sa
+    password:
+    locations:
+      - classpath:db/migration-h2

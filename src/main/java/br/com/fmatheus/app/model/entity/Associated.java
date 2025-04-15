@@ -3,7 +3,9 @@ package br.com.fmatheus.app.model.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.type.SqlTypes;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -16,12 +18,13 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "associated", uniqueConstraints = {@UniqueConstraint(columnNames = {"id", "document", "id_person"})})
-public class Associeted implements Serializable {
+public class Associated implements Serializable {
 
     @Id
     @GeneratedValue
     @UuidGenerator
-    @Column(name = "id", nullable = false)
+    @JdbcTypeCode(SqlTypes.CHAR)
+    @Column(name = "id", nullable = false, length = 36, columnDefinition = "CHAR(36)")
     private UUID id;
 
     @NotNull

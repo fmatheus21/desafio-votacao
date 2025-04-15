@@ -1,0 +1,8 @@
+CREATE TABLE topic (
+  id UUID NOT NULL,
+  title VARCHAR(100) NOT NULL,
+  description CLOB NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE (id)
+);

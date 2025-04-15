@@ -1,11 +1,11 @@
 package br.com.fmatheus.app.model.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 @Builder
 @Getter
@@ -15,9 +15,11 @@ import java.util.UUID;
 @Embeddable
 public class VotingPk implements Serializable {
 
-    @Column(name = "id_associeted", nullable = false)
-    private UUID idAssocieted;
+    @ManyToOne
+    @JoinColumn(name = "id_associated", referencedColumnName = "id", insertable = false, updatable = false)
+    private Associated associated;
 
-    @Column(name = "id_topic", nullable = false)
-    private UUID idTopic;
+    @ManyToOne
+    @JoinColumn(name = "id_session", referencedColumnName = "id", insertable = false, updatable = false)
+    private Session session;
 }
