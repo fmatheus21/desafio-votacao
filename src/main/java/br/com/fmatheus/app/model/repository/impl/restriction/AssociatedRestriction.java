@@ -15,11 +15,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
+/**
+ * Classe abstrata responsável por definir as regras de restrição utilizadas nas consultas
+ * do repositório de {@link Associated}.
+ * <p>
+ * Fornece métodos utilitários para geração de filtros e paginação.
+ * </p>
+ *
+ * @author <a href="mailto:fernando.matheuss@hotmail.com">Fernando Matheus</a>
+ */
 public abstract class AssociatedRestriction {
 
     private static final String PERCENT = "%";
 
 
+    /**
+     * Cria um conjunto de {@link Predicate} com base nos parâmetros do filtro fornecido.
+     *
+     * @param filter  filtro com critérios de pesquisa
+     * @param builder construtor de critérios
+     * @param root    raiz da entidade {@link Associated}
+     * @return array de {@link Predicate} aplicáveis
+     * @author <a href="mailto:fernando.matheuss@hotmail.com">Fernando Matheus</a>
+     */
     protected Predicate[] createRestrictions(AssociatedFilter filter, CriteriaBuilder builder, Root<Associated> root) {
 
         List<Predicate> predicates = new ArrayList<>();
@@ -41,6 +60,13 @@ public abstract class AssociatedRestriction {
     }
 
 
+    /**
+     * Aplica as configurações de paginação a uma consulta {@link TypedQuery}.
+     *
+     * @param typedQuery consulta tipada
+     * @param pageable   objeto contendo as informações de paginação
+     * @author <a href="mailto:fernando.matheuss@hotmail.com">Fernando Matheus</a>
+     */
     protected void addPageRestrictions(TypedQuery<Associated> typedQuery, Pageable pageable) {
         int currentPage = pageable.getPageNumber();
         int totalRecordsPerPage = pageable.getPageSize();
