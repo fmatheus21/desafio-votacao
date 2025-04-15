@@ -11,30 +11,15 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.com.fmatheus</groupId>
     <artifactId>desafio-votacao</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>desafio-votacao</name>
     <description>Teste técnico para o processo seletivo da Sicredi</description>
     <url/>
 
-    <licenses>
-        <license/>
-    </licenses>
-
-    <developers>
-        <developer/>
-    </developers>
-
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
-
     <properties>
         <caelum-stella-core.version>2.2.0</caelum-stella-core.version>
         <commons-lang3.version>3.17.0</commons-lang3.version>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
     </properties>
 
     <dependencies>

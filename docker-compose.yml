@@ -39,6 +39,7 @@ services:
       SPRING.FLYWAY.USER: docker
       SPRING.FLYWAY.PASSWORD: admin123
       SPRING.JPA.SHOWSQL: "false"
+      VOTING.SESSION.EXPIRATIONTIME: 2
       SERVER.PORT: "8100"
     ports:
       - "8100:8100"
