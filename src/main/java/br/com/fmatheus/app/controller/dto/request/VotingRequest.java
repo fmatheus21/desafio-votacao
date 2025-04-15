@@ -3,7 +3,6 @@ package br.com.fmatheus.app.controller.dto.request;
 import br.com.fmatheus.app.controller.enums.VoteEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 
 import java.util.UUID;
 
@@ -16,6 +15,5 @@ public record VotingRequest(
         @NotNull UUID idSession,
 
         @Schema(description = "Voto do associado (YES ou NO)", example = "YES")
-        @Pattern(regexp = "YES|NO")
         @NotNull VoteEnum vote) {
 }
